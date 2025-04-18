@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - DeHills School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding-top: 80px; /* Space for fixed header */
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+        
+        .logo p {
+            font-size: 12px;
+            color: #777;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        nav ul li a.active {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            color: #2c3e50;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+        
+        /* Banner Section */
+        .banner {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .banner-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 60px 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Faculty Section */
+        .faculty-section {
+            background: #ecf0f1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #2c3e50;
+        }
+        
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .faculty-card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faculty-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #ecf0f1;
+        }
+        
+        .faculty-card h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        .faculty-card p.position {
+            color: #777;
+            margin-bottom: 15px;
+        }
+        
+        .faculty-card p.bio {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: #3498db;
+            color: white;
+            padding: 50px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-col p, .footer-col a {
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+        
+        .footer-col a {
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+        }
+        
+        .footer-col a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .footer-form button {
+            width: 100%;
+            padding: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .footer-form button:hover {
+            background: #2980b9;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0 !important;
+                padding: 10px 30px;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 10px 0;
+            }
+            
+            .banner h1 {
+                font-size: 36px;
+            }
+            
+            .banner p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+            
+            .about-text h2, .section-title {
+                font-size: 28px;
+            }
+            
+            .stat-item h3 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1><span>De</span>Hills School</h1>
+                <p>Excellence in Education</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1>About DeHills School</h1>
+            <p>Our history, mission, and values</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our History</h2>
+                    <p>Founded in 1985, DeHills School has been a pillar of academic excellence in our community for over three decades. What began as a small neighborhood school has grown into a premier educational institution serving students from preschool through high school.</p>
+                    <p>Our founder, Dr. Eleanor DeHills, envisioned a school that would combine rigorous academics with character development and creative expression. Today, we continue to uphold her vision while adapting to the needs of 21st-century learners.</p>
+                    
+                    <h2>Our Mission</h2>
+                    <p>At DeHills School, our mission is to nurture curious, compassionate, and confident learners who are prepared to meet the challenges of an ever-changing world. We believe in educating the whole child - mind, body, and character.</p>
+                    
+                    <h2>Our Values</h2>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="fas fa-check" style="margin-right: 10px; color: #3498db;"></i> Excellence in academics and character</li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="fas fa-check" style="margin-right: 10px; color: #3498db;"></i> Respect for self and others</li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="fas fa-check" style="margin-right: 10px; color: #3498db;"></i> Commitment to community service</li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="fas fa-check" style="margin-right: 10px; color: #3498db;"></i> Celebration of diversity</li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="fas fa-check" style="margin-right: 10px; color: #3498db;"></i> Lifelong love of learning</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="DeHills School Building">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section class="section faculty-section">
+        <div class="container">
+            <h2 class="section-title">Our Leadership Team</h2>
+            <div class="faculty-grid">
+                <div class="faculty-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Principal">
+                    <h3>Dr. Sarah Johnson</h3>
+                    <p class="position">Principal</p>
+                    <p class="bio">With over 20 years in education, Dr. Johnson leads our school with vision and dedication.</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Vice Principal">
+                    <h3>Mr. Robert Chen</h3>
+                    <p class="position">Vice Principal</p>
+                    <p class="bio">Mr. Chen specializes in curriculum development and student support services.</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://images.unsplash.com/photo-1542190891-2093d38760f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Academic Dean">
+                    <h3>Ms. Angela Davis</h3>
+                    <p class="position">Academic Dean</p>
+                    <p class="bio">Ms. Davis oversees our academic programs and faculty development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>35+</h3>
+                    <p>Years of Excellence</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>College Acceptance</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1:12</h3>
+                    <p>Student-Teacher Ratio</p>
+                </div>
+                <div class="stat-item">
+                    <h3>25+</h3>
+                    <p>Extracurricular Clubs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>DeHills School</h3>
+                    <p>123 Education Avenue<br>Learning City, LC 12345 port-hacourt<br>Phone: 0815823784<br>Email: info@dehills.edu</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="academics.html">Academics</a>
+                    <a href="admissions.html">Admissions</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates</p>
+                    <form class="footer-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 DeHills School. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('nav ul');
+            const navIcon = mobileMenuBtn.querySelector('i');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+                
+                // Change icon between bars and times
+                if (navMenu.classList.contains('show')) {
+                    navIcon.classList.remove('fa-bars');
+                    navIcon.classList.add('fa-times');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                } else {
+                    navIcon.classList.remove('fa-times');
+                    navIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('show');
+                        navIcon.classList.remove('fa-times');
+                        navIcon.classList.add('fa-bars');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+            
+            // Close menu when clicking outside or pressing ESC
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('nav') && !event.target.closest('.mobile-menu-btn')) {
+                    if (window.innerWidth <= 768 && navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                        navIcon.classList.remove('fa-times');
+                        navIcon.classList.add('fa-bars');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+            
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && window.innerWidth <= 768 && navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    navIcon.classList.remove('fa-times');
+                    navIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

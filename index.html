@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeHills School - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 80px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .highlight {
+            color: #3498db;
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover:after,
+        nav ul li.current a:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #2c3e50;
+            margin-right: 20px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-menu ul li a {
+            font-weight: 600;
+            display: block;
+            padding: 8px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: 
+                linear-gradient(rgba(84, 57, 57, 0.6)
+                url('/image/high-angle-academic-cap-glasses-with-globe_23-2148756568.avif') no-repeat center center/cover);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* News Section */
+        .news {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: #3498db;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .news-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .news-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .news-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-date {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .news-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            color: #3498db;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .testimonial p {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .author {
+            font-weight: 600;
+            color: #3498db;
+        }
+
+        .slider-controls {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #bdc3c7;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: #3498db;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            padding: 60px 0;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .quick-link-item {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .quick-link-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .quick-link-item h3 {
+            color: #3498db;
+        }
+
+        .btn-small {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-small:hover {
+            background: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: #3498db;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-col p {
+            color: #bdc3c7;
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bdc3c7;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #3498db;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+            background: #34495e;
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #bdc3c7;
+        }
+
+        .newsletter-form button {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #2980b9;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            nav {
+                display: none;
+            }
+        
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-container {
+                padding: 10px 0;
+            }
+            
+            .logo h1 {
+                font-size: 24px;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .news-item, 
+            .feature-item,
+            .quick-link-item {
+                padding: 30px 20px;
+            }
+            
+            .testimonial {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1><span class="highlight">De</span>Hills School</h1>
+                <p>Excellence in Education</p>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <ul>
+            <li class="current"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="academics.html">Academics</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to DeHills School</h1>
+            <p>Nurturing young minds for a brighter future through innovative education and holistic development</p>
+            <a href="admissions.html" class="btn">Apply Now</a>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest News & Events</h2>
+            </div>
+            <div class="news-grid">
+                <div class="news-item">
+                    <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sports Day" class="news-img">
+                    <div class="news-content">
+                        <span class="news-date">June 15, 2023</span>
+                        <h3>Annual Sports Day</h3>
+                        <p>Join us for our exciting annual sports day event featuring competitions and fun activities for all students.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Science Fair" class="news-img">
+                    <div class="news-content">
+                        <span class="news-date">June 20, 2023</span>
+                        <h3>Science Fair Exhibition</h3>
+                        <p>Our students will showcase their innovative science projects to the public. All parents are invited.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Admissions" class="news-img">
+                    <div class="news-content">
+                        <span class="news-date">July 5, 2023</span>
+                        <h3>Admissions Open</h3>
+                        <p>Registration for the 2023-2024 academic year is now open. Limited seats available.</p>
+                        <a href="admissions.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose DeHills?</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Qualified Teachers</h3>
+                    <p>Our certified educators are dedicated to your child's success with personalized attention.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-flask"></i>
+                    <h3>Modern Labs</h3>
+                    <p>State-of-the-art science, computer, and robotics laboratories for hands-on learning.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Sports Facilities</h3>
+                    <p>Excellent sports infrastructure including swimming pool, basketball court, and football field.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-music"></i>
+                    <h3>Arts Programs</h3>
+                    <p>Comprehensive creative arts and music programs to foster talent and creativity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Parents Say</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p>"DeHills School has provided my child with an excellent learning environment. The teachers are caring and the curriculum is well-structured, balancing academics with extracurricular activities perfectly."</p>
+                    <div class="author">- Mrs. Sarah Johnson</div>
+                </div>
+                <div class="testimonial">
+                    <p>"The robotics program at DeHills helped my son discover his passion for technology. The school's focus on STEM education is truly impressive and prepares students for the future."</p>
+                    <div class="author">- Mr. David Thompson</div>
+                </div>
+                <div class="testimonial">
+                    <p>"As an alumni and now a parent, I can confidently say DeHills provides education that stands the test of time. The values they instill go beyond academics."</p>
+                    <div class="author">- Ms. Angela Williams</div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links">
+        <div class="container">
+            <div class="quick-links-grid">
+                <div class="quick-link-item">
+                    <i class="far fa-calendar-alt" style="font-size:2.5rem; color:#3498db; margin-bottom:15px;"></i>
+                    <h3>School Calendar</h3>
+                    <p>View important dates and events throughout the academic year</p>
+                    <a href="#" class="btn-small">View Calendar</a>
+                </div>
+                <div class="quick-link-item">
+                    <i class="fas fa-user-tie" style="font-size:2.5rem; color:#3498db; margin-bottom:15px;"></i>
+                    <h3>Parent Portal</h3>
+                    <p>Access your child's grades, attendance, and school announcements</p>
+                    <a href="#" class="btn-small">Login</a>
+                </div>
+                <div class="quick-link-item">
+                    <i class="fas fa-camera" style="font-size:2.5rem; color:#3498db; margin-bottom:15px;"></i>
+                    <h3>School Gallery</h3>
+                    <p>Browse photos from school events, activities, and daily life</p>
+                    <a href="#" class="btn-small">View Gallery</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>DeHills School</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Education Avenue<br>Learning City, LC 12345 port-hacourt</p>
+                    <p><i class="fas fa-phone"></i>08105823784</p>
+                    <p><i class="fas fa-envelope"></i> info@dehills.edu</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Academics</h3>
+                    <ul>
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="#">Faculty</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">STEM Programs</a></li>
+                        <li><a href="#">Extracurriculars</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <h3 style="margin-top:30px;">Newsletter</h3>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 DeHills School. All Rights Reserved. | <a href="#" style="color:#3498db;">Privacy Policy</a> | <a href="#" style="color:#3498db;">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            if (mobileMenu.style.display === 'block') {
+                mobileMenu.style.display = 'none';
+                this.innerHTML = '<i class="fas fa-bars"></i>';
+            } else {
+                mobileMenu.style.display = 'block';
+                this.innerHTML = '<i class="fas fa-times"></i>';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.mobile-menu').style.display = 'none';
+                document.querySelector('.mobile-menu-btn').innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(n) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + testimonials.length) % testimonials.length;
+            testimonials[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Click on dots to navigate
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                resetInterval();
+                showSlide(index);
+            });
+        });
+
+        // Auto slide change every 5 seconds
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        // Initialize slider
+        showSlide(0);
+        startInterval();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80, // Adjust for fixed header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add shadow to header on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

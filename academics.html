@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics - DeHills School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --dark-color: #333;
+            --highlight-color: #3498db;
+            --text-color: #555;
+            --white: #fff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+            padding-top: 80px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+        
+        .logo .highlight {
+            color: var(--highlight-color);
+        }
+        
+        .logo p {
+            font-size: 12px;
+            color: #777;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--dark-color);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover,
+        nav ul li a.current {
+            color: var(--highlight-color);
+        }
+        
+        nav ul li a.current::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--highlight-color);
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            color: var(--secondary-color);
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') 
+                        no-repeat center center/cover;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .page-banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        /* Academics Content */
+        .academics-content {
+            padding: 60px 0;
+            background: var(--white);
+        }
+        
+        .academics-content h2 {
+            font-size: 36px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+        
+        .academics-content p {
+            margin-bottom: 30px;
+            color: var(--text-color);
+            max-width: 800px;
+        }
+        
+        /* Program Tabs */
+        .program-tabs {
+            margin: 50px 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            color: var(--highlight-color);
+            border-bottom-color: var(--highlight-color);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content h3 {
+            font-size: 24px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .tab-content ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .tab-content ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-color);
+        }
+        
+        .tab-content ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--highlight-color);
+        }
+        
+        /* Special Programs */
+        .special-programs {
+            margin: 60px 0;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .program-card {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .program-card i {
+            font-size: 40px;
+            color: var(--highlight-color);
+            margin-bottom: 20px;
+        }
+        
+        .program-card h3 {
+            font-size: 22px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-col p,
+        .footer-col a {
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+        
+        .footer-col a {
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+        }
+        
+        .footer-col a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .newsletter-form button {
+            width: 100%;
+            padding: 12px;
+            background: var(--highlight-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background: #2980b9;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+            
+            nav.active {
+                max-height: 500px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px 0;
+            }
+            
+            nav ul li {
+                margin: 0;
+                padding: 0 30px;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 12px 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav ul li:last-child a {
+                border-bottom: none;
+            }
+            
+            .page-banner h1 {
+                font-size: 36px;
+            }
+            
+            .page-banner p {
+                font-size: 18px;
+            }
+            
+            .academics-content h2 {
+                font-size: 30px;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+                border-bottom: none;
+            }
+            
+            .tab-btn {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+                text-align: left;
+            }
+            
+            .tab-btn.active {
+                border-left-color: var(--highlight-color);
+                border-bottom-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1><span class="highlight">De</span>Hills School</h1>
+                <p>Excellence in Education</p>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="academics.html" class="current">Academics</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Academic Programs</h1>
+            <p>Excellence in education at every level</p>
+        </div>
+    </section>
+
+    <!-- Academics Content -->
+    <section class="academics-content">
+        <div class="container">
+            <h2>Our Curriculum</h2>
+            <p>At DeHills School, we offer a comprehensive, challenging curriculum designed to prepare students for success in college and beyond. Our program emphasizes critical thinking, creativity, and real-world application of knowledge.</p>
+            
+            <div class="program-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="elementary">Elementary</button>
+                    <button class="tab-btn" data-tab="middle">Middle School</button>
+                    <button class="tab-btn" data-tab="high">High School</button>
+                </div>
+                
+                <div class="tab-content active" id="elementary">
+                    <h3>Elementary School (Grades K-5)</h3>
+                    <p>Our elementary program builds a strong foundation in core academic areas while nurturing curiosity and a love of learning. Key features include:</p>
+                    <ul>
+                        <li>Literacy-focused curriculum with small reading groups</li>
+                        <li>Hands-on mathematics using Singapore Math approach</li>
+                        <li>Integrated science and social studies units</li>
+                        <li>Specialist classes in art, music, physical education, and Spanish</li>
+                        <li>Social-emotional learning program</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="middle">
+                    <h3>Middle School (Grades 6-8)</h3>
+                    <p>Our middle school program helps students transition to more advanced coursework while providing the support they need during these formative years. Highlights include:</p>
+                    <ul>
+                        <li>Departmentalized instruction with subject-area experts</li>
+                        <li>Advanced math tracks available</li>
+                        <li>STEM lab and research projects</li>
+                        <li>Elective options including coding, drama, and journalism</li>
+                        <li>Advisory program for academic and social support</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="high">
+                    <h3>High School (Grades 9-12)</h3>
+                    <p>Our college-preparatory high school program offers rigorous academics with opportunities for specialization. Features include:</p>
+                    <ul>
+                        <li>Honors and Advanced Placement courses</li>
+                        <li>Dual enrollment with local universities</li>
+                        <li>Comprehensive STEM and humanities programs</li>
+                        <li>Senior capstone project requirement</li>
+                        <li>College counseling beginning in freshman year</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="special-programs">
+                <h2>Special Programs</h2>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>STEM Academy</h3>
+                        <p>Advanced coursework and research opportunities in science, technology, engineering, and mathematics.</p>
+                    </div>
+                    <div class="program-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Arts Conservatory</h3>
+                        <p>Intensive training in visual arts, music, theater, and dance with professional artist mentors.</p>
+                    </div>
+                    <div class="program-card">
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>Global Studies</h3>
+                        <p>International focus with language immersion, study abroad, and model UN participation.</p>
+                    </div>
+                    <div class="program-card">
+                        <i class="fas fa-medal"></i>
+                        <h3>Athletics</h3>
+                        <p>Competitive sports programs with state championship teams in multiple disciplines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>DeHills School</h3>
+                    <p>123 Education Avenue<br>Learning City, LC 12345 port-hacourt<br>Phone: 0815823784<br>Email: info@dehills.edu</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="academics.html">Academics</a>
+                    <a href="admissions.html">Admissions</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 DeHills School. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const nav = document.getElementById('mainNav');
+            const navIcon = mobileMenuBtn.querySelector('i');
+            
+            // Toggle mobile menu
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                
+                // Change icon between bars and times
+                if (nav.classList.contains('active')) {
+                    navIcon.classList.remove('fa-bars');
+                    navIcon.classList.add('fa-times');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                } else {
+                    navIcon.classList.remove('fa-times');
+                    navIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        nav.classList.remove('active');
+                        navIcon.classList.remove('fa-times');
+                        navIcon.classList.add('fa-bars');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+            
+            // Tab functionality for academic programs
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabBtns.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    btn.classList.add('active');
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Close menu when clicking outside or pressing ESC
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('nav') && 
+                    !event.target.closest('.mobile-menu-btn') &&
+                    window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                    navIcon.classList.remove('fa-times');
+                    navIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && 
+                    nav.classList.contains('active') &&
+                    window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                    navIcon.classList.remove('fa-times');
+                    navIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
